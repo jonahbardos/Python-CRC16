@@ -5,8 +5,6 @@ def crc16_generator(data):
     data = bytearray(data)
     crc = 0xFFFF
     for b in data:
-        # cur_byte = 0xFF & b
-        # cur_byte = b
         crc ^= b
         for _ in range(0, 8):
             
