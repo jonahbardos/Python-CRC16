@@ -14,3 +14,9 @@ def crc16_generator(data):
             if bcarry:
                 crc ^= 0xa001
     return crc
+
+
+if __name__ == "__main__":
+    x = crc16_generator([0xFF, 0xFE, 0xAC, 0x01, 0xed])
+    print(hex(x))
+    pass
