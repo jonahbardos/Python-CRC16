@@ -1,4 +1,4 @@
-# Python-CRC16 [IN-PROGRESS]
+# Python-CRC16
 CRC-16-CCITT Python Algorithm
 
 ## USAGE
