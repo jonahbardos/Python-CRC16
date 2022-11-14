@@ -131,6 +131,28 @@ def crc16_verify(data_packet: list[int], debug=False) -> bool:
     if debug:
         print(f'Data packet: {data_packet} -> Remainder: {remainder}')
     return (True if sum(remainder) == 0 else False)
+
+
+def crc16_generator_complete(data_packet: list[int], debug=False) -> list[int]:
+    """Creates a complete data packet with CRC to send to receiver/client.
+
+    Parameters
+    ----------
+    data_packet : list[int]
+        Data packet to send
+    debug : bool, optional
+        debugger, by default False
+
+    Returns
+    -------
+    list[int]
+        Complete full data packet with CRC included
+    """
+    data_packet.extend(crc16_generator_to_send(data_packet))
+    if debug:
+        print(f'Complete packet: {data_packet}')
+        
+    return data_packet
     
 
 if __name__ == "__main__":
@@ -149,3 +171,9 @@ if __name__ == "__main__":
     
     bad_data_packet.extend(crc16_generator_to_send(bad_data_packet) + [0xff])
     print(True if crc16_verify(bad_data_packet, debug=True) == True else False)
+    
+    # Verify complete data packet with CRC
+    data_packet = [0xff, 0xfe]
+    print(True 
+          if crc16_generator_complete(data_packet) == [255, 254, 193, 192]
+          else False)
